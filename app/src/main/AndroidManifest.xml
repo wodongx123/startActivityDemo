@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wodongx123.startactivitydemo">
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!-- 下面是测试1相关的Activity -->
+        <activity android:name=".test1.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".test1.SecondActivity"/>
+        <activity android:name=".test1.ThirdActivity" >
+            <intent-filter>
+                <action android:name="a" />
+                <category android:name="b" />
+                <!-- 无论设置了哪些内容，最后都要加上这个，否则无法启动 -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- 下面是测试2相关的Activity -->
+        <activity android:name=".test2.Main2Activity" />
+        <activity android:name=".test2.ActionTestActivity">
+            <intent-filter>
+                <action android:name="test1" />
+                <action android:name="test2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".test2.CategoryTestActivity">
+            <intent-filter>
+                <action android:name="t" />
+
+                <category android:name="cate1" />
+                <category android:name="cate2" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".test2.DataTestActivity">
+            <!-- 一个Activity可以有多个Intent Filter，只要匹配其中一个就能启动 -->
+            <intent-filter>
+                <action android:name="t1"/>
+                <data android:mimeType="image/png" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="t2"/>
+                <data android:mimeType="image/jpeg"
+                    android:scheme="https"
+                    android:host="www.baidu.com"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
